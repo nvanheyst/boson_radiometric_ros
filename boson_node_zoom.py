@@ -16,10 +16,10 @@ cap.set(cv2.CAP_PROP_CONVERT_RGB, 0)
 
 # Spot meter size and position as percentages
 x_center_percent, y_center_percent = 50, 50  # Center of the image
-width_percent, height_percent = 15, 20       # Size of the spot meter as a percentage of frame dimensions
+width_percent, height_percent = 5, 10       # Size of the spot meter as a percentage of frame dimensions
 
 # Text settings
-position, font, font_scale, font_color, thickness, line_type = (5, 25), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA
+position, font, font_scale, font_color, thickness, line_type = (5, 45), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA
 
 
 def main():
@@ -82,6 +82,8 @@ def main():
             roi_pub.publish(roi_image_msg)
             zoomed_frame_msg = bridge.cv2_to_imgmsg(col_zoom, encoding="bgr8")
             zoom_pub.publish(zoomed_frame_msg)
+
+            rospy.sleep(0.1)
 
 
 if __name__ == '__main__':
