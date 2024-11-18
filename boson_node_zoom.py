@@ -52,6 +52,14 @@ def main():
             mean_val = cv2.mean(rect)
             avg_pixel_val = round(mean_val[0], 1)
             avg_temp_c = round((avg_pixel_val / 100) - 273, 1)
+
+            max_val = np.max(rect)
+            max_pixel_val = round(max_val, 1)
+            max_temp_c = round((max_pixel_val / 100) - 273, 1)
+
+            min_val = np.min(rect)
+            min_pixel_val = round(min_val, 1)
+            min_temp_c = round((min_pixel_val / 100) - 273, 1)
             
             # Normalize the frame for display
             display_frame = cv2.normalize(frame, None, 0, 255, cv2.NORM_MINMAX).astype(np.uint8)
@@ -60,7 +68,8 @@ def main():
 
             # Draw rectangle and temperature text on the image
             roi_image = img_col.copy()
-            text = f"ROI Average Temp C {avg_temp_c:.2f}"
+            #text = f"ROI Average Temp C {avg_temp_c:.2f}"
+            text = f"AVG {avg_temp_c:.2f}, MAX {max_temp_c:.2f}, MIN {min_temp_c:.2f}"
             cv2.rectangle(roi_image, rect_top_left, rect_bottom_right, (255, 255, 255), 2)
             cv2.putText(roi_image, text, position, font, font_scale, font_color, thickness, line_type)
 
