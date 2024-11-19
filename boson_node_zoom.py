@@ -16,10 +16,10 @@ cap.set(cv2.CAP_PROP_CONVERT_RGB, 0)
 
 # Spot meter size and position as percentages
 x_center_percent, y_center_percent = 50, 50  # Center of the image
-width_percent, height_percent = 5, 10       # Size of the spot meter as a percentage of frame dimensions
+width_percent, height_percent = 1.25, 2.5       # Size of the spot meter as a percentage of frame dimensions
 
 # Text settings
-position, font, font_scale, font_color, thickness, line_type = (5, 45), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2, cv2.LINE_AA
+position, font, font_scale, font_color, thickness, line_type = (5, 45), cv2.FONT_HERSHEY_SIMPLEX, 0.7, (255, 255, 255), 1, cv2.LINE_AA
 
 
 def main():
@@ -69,7 +69,7 @@ def main():
             # Draw rectangle and temperature text on the image
             roi_image = img_col.copy()
             #text = f"ROI Average Temp C {avg_temp_c:.2f}"
-            text = f"AVG {avg_temp_c:.2f}, MAX {max_temp_c:.2f}, MIN {min_temp_c:.2f}"
+            text = f"Spotmeter Temp (C): AVG {avg_temp_c:.1f}, MAX {max_temp_c:.1f}, MIN {min_temp_c:.1f}"
             cv2.rectangle(roi_image, rect_top_left, rect_bottom_right, (255, 255, 255), 2)
             cv2.putText(roi_image, text, position, font, font_scale, font_color, thickness, line_type)
 
